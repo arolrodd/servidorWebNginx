@@ -1,0 +1,10 @@
+server {
+    listen 80;
+    listen [::]:80;
+    root /var/www/webAntonio/html/static-website-example;
+    index index.html index.htm;
+    server_name 192.168.57.14;
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}
