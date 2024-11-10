@@ -20,5 +20,12 @@ añadimos esta configuración en el archivo .gitignore para que toda la configur
     -Copiamos el archivo webAntonio de vagrant al directorio /etc/nginx/sites-available/webAntonio, creamos un enlace simbólico en sites-enabled, comprobamos y reiniciamos el servicio de nginx
 ![alt text](images/image6.png)
 
-Archivo vagrantfile actualizado
+    -Archivo vagrantfile completo
 ![alt text](images/image3.png)
+
+    -Comprobamos que funciona correctamente poniendo en el navegador la url http://webAntonio
+        ·añadimos al archivo etc/hosts la direccion ip y el nombre del servidor
+![alt text](images/image7.png)
+
+Página web de ejemplo
+![alt text](images/image8.png)
