@@ -51,6 +51,18 @@ Vagrant.configure("2") do |config|
         -subj "/C=ES/CN=webAntonio"  
       
       sudo systemctl restart vsftpd
+
+
+      #Autentificacion
+      cp /vagrant/.htpasswd /etc/nginx/.htpasswd
+      sudo sh -c "echo -n 'antonio:' > /etc/nginx/.htpasswd"
+      sudo sh -c "openssl passwd -apr1 'antonio'>> /etc/nginx/.htpasswd"
+
+      sudo sh -c "echo -n 'roldan:' >> /etc/nginx/.htpasswd"
+      sudo sh -c "openssl passwd -apr1 'roldan'>> /etc/nginx/.htpasswd"
+
+      cp /etc/nginx/.htpasswd /vagrant/.htpasswd
+
     SHELL
   end
 end
