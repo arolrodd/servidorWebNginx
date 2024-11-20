@@ -1,15 +1,28 @@
 server {
     listen 80;
     listen [::]:80;
+    server_name webJesus webJesus.com www.webJesus.com;
+    
+    return 301 https://$host$request_uri;
+}
+
+server {
+    listen 443 ssl;
+    listen [::]:443 ssl;
+    server_name webJesus webJesus.com www.webJesus.com;
     root /var/www/webJesus/html/;
     index index.html index.htm;
-    server_name webJesus;
-    location / {
-        try_files $uri $uri/ =404;
-    }
 
-    location /booking.html {
+    ssl_certificate /etc/ssl/certs/webJesus.com.crt;
+    ssl_certificate_key /etc/ssl/private/webJesus.com.key;
+    ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3;
+    ssl_ciphers HIGH:!aNULL:!MD5;
+
+    add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+
+    location / { 
         auth_basic "Área restringida";
         auth_basic_user_file /etc/nginx/.htpasswd;
+        try_files $uri $uri/ =404;
     }
 }

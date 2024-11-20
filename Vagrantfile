@@ -11,6 +11,7 @@ Vagrant.configure("2") do |config|
       apt-get install -y nginx
       apt-get install -y vsftpd
       apt-get install -y git
+      apt-get install -y ufw
       sudo systemctl start nginx
 
       # Eliminamos el directorio si ya existia para evitar conflictos
@@ -48,7 +49,7 @@ Vagrant.configure("2") do |config|
       sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
         -keyout /etc/ssl/private/vsftpd.key \
         -out /etc/ssl/certs/vsftpd.crt \
-        -subj "/C=ES/CN=webAntonio"  
+        -subj "/C=ES/CN=webAntonio"
       
       sudo systemctl restart vsftpd
 
@@ -63,6 +64,23 @@ Vagrant.configure("2") do |config|
 
       cp /etc/nginx/.htpasswd /vagrant/.htpasswd
 
+      sudo ufw allow ssh
+      sudo ufw allow 'Nginx Full'
+      sudo ufw delete allow 'Nginx HTTP'
+      
+      sudo ufw --force enable
+
+      sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+        -keyout /etc/ssl/private/webJesus.com.key \
+        -out /etc/ssl/certs/webJesus.com.crt \
+        -subj "/C=ES/CN=webJesus"
+
+      sudo chmod 600 /etc/ssl/private/webJesus.com.key
+      sudo chown root:root /etc/ssl/private/webJesus.com.key
+
+
+      
+      sudo systemctl reload nginx
     SHELL
   end
 end
