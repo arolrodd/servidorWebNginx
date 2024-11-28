@@ -34,4 +34,14 @@ añadimos al archivo etc/hosts la direccion ip y el nombre del servidor
 Página web de ejemplo
 ![alt text](images/image8.png)
 
-## Configuración Para configurar el servidor web con Nginx y mostrar nuestra pagina
+## Capturas Comprobacion de Autentificación y Certificación
+
+### Autentificación
+1. Foto comprobación archivo vagrantfile configuración autentificación
+![alt text](images/autentificacion1.png)
+
+2. Foto comprobación logs de autentificación
+![alt text](images/accesoCorrectoErroneo.png)
+
+2. Foto comprobación logs de autentificación
+![alt text](images/accesoCorrectoErroneo.png)

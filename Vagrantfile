@@ -55,7 +55,6 @@ Vagrant.configure("2") do |config|
 
 
       #Autentificacion
-      cp /vagrant/.htpasswd /etc/nginx/.htpasswd
       sudo sh -c "echo -n 'antonio:' > /etc/nginx/.htpasswd"
       sudo sh -c "openssl passwd -apr1 'antonio'>> /etc/nginx/.htpasswd"
 
